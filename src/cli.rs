@@ -9,7 +9,7 @@ pub enum Language {
 }
 
 #[derive(Parser)]
-#[clap(author, version, about, long_about = None)]
+#[clap(author, version, about = "A small tool helping with spelling using spelling alphabets", long_about = None)]
 pub struct Cli {
     /// The words which are to be spelled out
     #[arg(required = true)]
