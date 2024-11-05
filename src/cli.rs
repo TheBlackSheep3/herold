@@ -12,10 +12,13 @@ pub enum Language {
 #[clap(author, version, about = "A small tool helping with spelling using spelling alphabets", long_about = None)]
 pub struct Cli {
     /// The words which are to be spelled out
-    #[arg(required = true)]
     pub words: Vec<String>,
 
     /// Which spelling alphabet should be used
     #[arg(short = 'l', long = "lang", value_enum, default_value_t = Language::German)]
     pub language: Language,
+
+    /// Print the license information
+    #[arg(short = 'L', long = "license")]
+    pub license: bool
 }
