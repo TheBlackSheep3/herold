@@ -1,6 +1,7 @@
 use phf::phf_map;
+use crate::cli::Language;
 
-static LETTERS: phf::Map<&'static str, &'static str> = phf_map! {
+static LETTERS_GER: phf::Map<&'static str, &'static str> = phf_map! {
     "a" => "Aachen",
     "ä" => "Umlaut Aachen",
     "b" => "Berlin",
@@ -30,9 +31,41 @@ static LETTERS: phf::Map<&'static str, &'static str> = phf_map! {
     "w" => "Wuppertal",
     "x" => "Xanten",
     "y" => "Ypsilon",
-    "z" => "Zwickau"
+    "z" => "Zwickau",
 };
 
-pub fn lookup_letter(letter: &str) -> Option<&str> {
-    LETTERS.get(letter).map(|v| &**v)
+static LETTERS_ENG: phf::Map<&'static str, &'static str> = phf_map! {
+    "a" => "Alpha",
+    "b" => "Bravo",
+    "c" => "Charlie",
+    "d" => "Delta",
+    "e" => "Echo",
+    "f" => "Foxtrot",
+    "g" => "Golf",
+    "h" => "Hotel",
+    "i" => "India",
+    "j" => "Juliett",
+    "k" => "Kilo",
+    "l" => "Lima",
+    "m" => "Mike",
+    "n" => "November",
+    "o" => "Oscar",
+    "p" => "Papa",
+    "q" => "Quebec",
+    "r" => "Romeo",
+    "s" => "Sierra",
+    "t" => "Tango",
+    "u" => "Uniform",
+    "v" => "Victor",
+    "w" => "Whiskey",
+    "x" => "X-ray",
+    "y" => "Yankee",
+    "z" => "Zulu",
+};
+
+pub fn lookup_letter(letter: &str, language: Language) -> Option<&str> {
+    match language {
+        Language::German => &LETTERS_GER,
+        Language::English => &LETTERS_ENG,
+    }.get(letter).map(|v| &**v)
 }
